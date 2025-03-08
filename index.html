@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6a11cb;
+            --secondary: #2575fc;
+            --light: #f3f4f6;
+            --dark: #1f2937;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-container {
+            background: var(--light);
+            padding: 2.5rem 3rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        .login-container h2 {
+            color: var(--dark);
+            margin-bottom: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .input-group {
+            position: relative;
+            margin: 1.5rem 0;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--light);
+            border-radius: 8px;
+            background: transparent;
+            font-size: 1rem;
+            color: var(--dark);
+            transition: all 0.3s ease;
+        }
+
+        .input-group label {
+            position: absolute;
+            top: 12px;
+            left: 15px;
+            color: #999;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .input-group input:focus,
+        .input-group input:valid {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .input-group input:focus ~ label,
+        .input-group input:valid ~ label {
+            top: -10px;
+            left: 10px;
+            font-size: 0.8rem;
+            color: var(--primary);
+            background: var(--light);
+            padding: 0 5px;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .btn-login:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background: #ddd;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            background: #fff;
+            padding: 10px;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-2px);
+        }
+
+        .signup-link {
+            margin-top: 1.5rem;
+            color: var(--dark);
+            font-size: 0.9rem;
+        }
+
+        .signup-link a {
+            color: var(--primary);
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Welcome Back!</h2>
+        
+        <div class="input-group">
+            <input type="email" id="email" required>
+            <label for="email">Email Address</label>
+        </div>
+        
+        <div class="input-group">
+            <input type="password" id="password" required>
+            <label for="password">Password</label>
+            <i class="fas fa-eye password-toggle" onclick="togglePassword()"></i>
+        </div>
+        
+        <div class="remember-forgot">
+            <label>
+                <input type="checkbox"> Remember me
+            </label>
+            <a href="#">Forgot Password?</a>
+        </div>
+        
+        <button class="btn-login">Login</button>
+        
+        <div class="divider">
+            <span class="divider-line"></span>
+            <span>Or continue with</span>
+            <span class="divider-line"></span>
+        </div>
+        
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-google"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-apple"></i></a>
+        </div>
+        
+        <div class="signup-link">
+            Don't have an account? <a href="signup.html">Sign up</a>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const eyeIcon = document.querySelector('.password-toggle');
+            
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        }
+    </script>
+</body>
+</html>
